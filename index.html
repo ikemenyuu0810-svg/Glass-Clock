@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>Glass Text Clock</title>
+<title>Outline Text Clock</title>
 <style>
   body {
     margin: 0;
@@ -13,15 +13,10 @@
     align-items: center;
   }
 
-  /* 文字内側のガラス */
-  .glass {
-    fill: rgba(255, 255, 255, 0.015);
-    backdrop-filter: blur(60px);
-    -webkit-backdrop-filter: blur(60px);
-  }
-
-  /* 枠線 */
-  .outline {
+  text {
+    font-family: "HarmonyOS-font-medium";
+    font-weight: 400;
+    letter-spacing: 0.08em;
     fill: none;
     stroke: white;
     stroke-width: 0.35;
@@ -29,11 +24,6 @@
     stroke-linejoin: round;
   }
 
-  text {
-    font-family:"HarmonyOS-font-medium";
-    font-weight: 400;
-    letter-spacing: 0.08em;
-  }
   @font-face { 
     font-family: "HarmonyOS-font-medium"; 
     src: url("./HarmonyOS_Sans_Bold.woff") format("woff"); 
@@ -44,58 +34,24 @@
 <body>
 
 <svg viewBox="0 0 720 260">
-  <defs>
-    <!-- 文字マスク -->
-    <mask id="text-mask">
-      <rect width="100%" height="100%" fill="black"/>
-      <text
-        id="mask-text"
-        x="50%"
-        y="55%"
-        text-anchor="middle"
-        dominant-baseline="middle"
-        font-size="120"
-        fill="white"
-      >
-        00:00:00
-      </text>
-    </mask>
-  </defs>
-
-  <!-- 文字の内側だけ背景をぼかす -->
-  <rect
-    width="100%"
-    height="100%"
-    class="glass"
-    mask="url(#text-mask)"
-  />
-
-  <!-- 枠線 -->
   <text
-    id="outline-text"
+    id="clock"
     x="50%"
     y="55%"
     text-anchor="middle"
     dominant-baseline="middle"
     font-size="120"
-    class="outline"
   >
-    00:00:00
+    00:00
   </text>
 </svg>
 
 <script>
   function updateClock() {
     const now = new Date();
-
     const h = String(now.getHours()).padStart(2, "0");
     const m = String(now.getMinutes()).padStart(2, "0");
-    const s = String(now.getSeconds()).padStart(2, "0");
-
-    const time = `${h}:${m}`;
-
-    document.getElementById("mask-text").textContent = time;
-    document.getElementById("outline-text").textContent = time;
+    document.getElementById("clock").textContent = `${h}:${m}`;
   }
 
   updateClock();
