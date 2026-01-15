@@ -35,13 +35,14 @@
   }
 
   text {
-    font-family:
-      "Noto Sans JP Black",
-      "Hiragino Sans W8",
-      "Arial Black",
-      sans-serif;
+    font-family:"HarmonyOS-font-medium";
     font-weight: 900;
     letter-spacing: 0.08em;
+  }
+  @font-face { 
+    font-family: "HarmonyOS-font-medium"; 
+    src: url("/HarmonyOS_Sans_Bold.woff") format("woff"); 
+    font-display: swap;
   }
 </style>
 </head>
@@ -96,7 +97,7 @@
     const m = String(now.getMinutes()).padStart(2, "0");
     const s = String(now.getSeconds()).padStart(2, "0");
 
-    const time = `${h}:${m}:${s}`;
+    const time = `${h}:${m}`;
 
     document.getElementById("mask-text").textContent = time;
     document.getElementById("outline-text").textContent = time;
